@@ -17,3 +17,4 @@ mix.version();
 
 mix.copy('node_modules/tinymce', 'public/js/tinymce');
 mix.copy('node_modules/@mdi', 'public/js/mdi');
+mix.copy('node_modules/select2/dist/css/select2.min.css','public/css/select2.min.css')

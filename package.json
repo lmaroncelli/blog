@@ -25,6 +25,7 @@
     "dependencies": {
         "@mdi/font": "^4.4.95",
         "parsleyjs": "^2.9.1",
+        "select2": "^4.0.10",
         "tinymce": "^5.0.15"
     }
 }

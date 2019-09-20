@@ -19,6 +19,11 @@ class Article extends Model
       return $this->belongsToMany('App\Category', 'tblArticoliCategorie', 'articolo_id', 'categoria_id');
   }
 
+  public function getCategorie()
+  {
+    return implode(', ',Self::categorie()->pluck('nome')->toArray());
+  }
+
 
  
   

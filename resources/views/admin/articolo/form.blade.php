@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-md-8 offset-md-2">
     
-    <h1>{{ !$articolo->exists ? 'New ' : ' Update '}} article form</h1>
+    <h1>{{ !$articolo->exists ? 'Nuovo ' : ' Modifica '}} articolo</h1>
 
     <hr>
     
@@ -23,8 +23,17 @@
       <div class="form-group">
         <label for="corpo">Contenuto</label>
         <textarea class="form-control" id="corpo" name="corpo" rows="3" data-parsley-required>{{ old('corpo', $articolo->corpo) }}</textarea>        
+      </div>
+      <div class="form-group">
+        <label for="categorie">Categorie</label>      
+        <select id="categorie" class="form-control select2" name="categorie[]" multiple>
+          @foreach ($categorie as $cat)
+            <option value="{{$cat->id}}" @if (in_array($cat->id,$categorie_assegnate_ids)) selected @endif>{{$cat->nome}}</option>  
+          @endforeach
+        </select>
       </div>  
-      <button type="submit" class="btn btn-primary">{{ !$articolo->exists ? 'Save' : ' Update'}}</button>
+      <button type="submit" class="btn btn-primary">{{ !$articolo->exists ? 'Salva' : ' Aggiorna'}}</button>
+      <a href="{{ route('article.index') }}" class="btn btn-secondary">Annulla</a>
     </form>
   </div>  
 </div>
@@ -36,7 +45,8 @@
 
   tinymce.init({
     selector: '#corpo',
-    height: 500,
+    height: 800,
+    toolbar: ['bold|italic|underline|strikethrough | codesample | cut | copy | paste | formatselect | fontselect | blockquote | bullist | numlist | removeformat'],
     plugins: "code, codesample, textpattern, hr",
     codesample_languages: [
         {text: 'HTML/XML', value: 'markup'},
@@ -50,7 +60,6 @@
         {text: 'C#', value: 'csharp'},
         {text: 'C++', value: 'cpp'}
     ],
-    toolbar: "codesample | cut | copy | paste",
     textpattern_patterns: [
     {start: '*', end: '*', format: 'italic'},
     {start: '**', end: '**', format: 'bold'},

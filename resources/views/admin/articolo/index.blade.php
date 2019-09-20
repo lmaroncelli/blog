@@ -4,17 +4,18 @@
 
 <div class="row">
   <div class="col-md-10 offset-md-1">
-    
     <h1>Elenco articoli</h1>
-
+    <a class="btn btn-primary m-2" href="{{ route('article.create') }}">Nuovo articolo</a>
     <hr>
+    @if ($articoli->count())
     <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Titolo</th>
-          <th scope="col">Creato</th>
-          <th scope="col">Modificato</th>
+          <th>Titolo</th>
+          <th>Categorie</th>
+          <th>Creato</th>
+          <th>Modificato</th>
         </tr>
       </thead>
       <tbody>
@@ -26,14 +27,16 @@
         <tr>
           <th scope="row">{{$articolo->id}}</th>
           <td><a href="{{ route( 'article.show', $articolo->id ) }}">{{$articolo->titolo}}</a></td>
+          <td>{{$articolo->getCategorie()}}</td>
           <td>{{$articolo->created_at->format('d/m/Y H:i')}}</td>
           <td>{{$articolo->updated_at->locale('it_IT')->diffForHumans()}}</td>
-          <td><a href="{{ route( 'article.edit', $articolo->id ) }}" class="btn btn-sm btn-primary mdi mdi-file-document-edit">modifica</a></td>
-          <td><a  data-id="{{$articolo->id}}" href="" class="delete btn btn-sm btn-danger mdi mdi-trash-can-outline">elimina</a></td>
+          <td><a href="{{ route( 'article.edit', $articolo->id ) }}" class="btn btn-primary mdi mdi-file-document-edit"></a></td>
+          <td><a  data-id="{{$articolo->id}}" href="" class="delete btn btn-danger mdi mdi-trash-can-outline"></a></td>
         </tr>
         @endforeach
       </tbody>
     </table>    
+    @endif
   </div>  
 </div>
 @endsection

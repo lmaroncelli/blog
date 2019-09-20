@@ -11,6 +11,7 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    require('select2');
     require('parsleyjs');
     require('./it.js');
     require('./it.extra.js');

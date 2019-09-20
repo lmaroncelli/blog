@@ -16,6 +16,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('js/mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -23,6 +24,9 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
+                </a>
+                <a class="navbar-brand" href="{{ route('dashboard') }}">
+                  Dashboard
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -94,6 +98,7 @@
         </div>
     </div>
     <script type="text/javascript">
+
       $(".delete").click(function(e){
         e.preventDefault();
         var id = $(this).data("id");
@@ -101,6 +106,11 @@
           $("form#delete_article_"+id).submit();
         }
       })
+
+      $(document).ready(function() {
+          $('.select2').select2();
+      });
+    
     </script>
     @yield('script_footer')
   </body>

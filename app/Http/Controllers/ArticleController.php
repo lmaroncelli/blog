@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -35,7 +36,10 @@ class ArticleController extends Controller
 
       $articolo = new Article;
 
-      return view('admin.articolo.form', compact('articolo'));
+      $categorie = Category::orderBy('nome')->get();
+      $categorie_assegnate_ids = []; 
+
+      return view('admin.articolo.form', compact('articolo','categorie','categorie_assegnate_ids'));
 
     }
 
@@ -83,7 +87,10 @@ class ArticleController extends Controller
     {
        $articolo = Article::find($id);
 
-       return view('admin.articolo.form', compact('articolo'));
+       $categorie = Category::orderBy('nome')->get();
+       $categorie_assegnate_ids = $articolo->categorie()->pluck('tblCategorie.id')->toArray(); 
+
+       return view('admin.articolo.form', compact('articolo','categorie','categorie_assegnate_ids'));
     }
 
     /**
@@ -95,6 +102,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {   
+
         $request->validate([
             'titolo' => "required|unique:tblArticoli,titolo,$id |max:255",
             'corpo' => "required",
@@ -102,9 +110,10 @@ class ArticleController extends Controller
         
         $articolo = Article::find($id);
 
-        $articolo->fill($request->all())->save();
-        
+        $articolo->fill($request->except('categorie'))->save();
 
+        $articolo->categorie()->sync($request->categorie);
+        
         return redirect()->route('article.index')->with('status', 'Articolo aggiornato!');
         
     }
