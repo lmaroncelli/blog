@@ -39409,8 +39409,7 @@ try {
 
   __webpack_require__(/*! ./it.js */ "./resources/js/it.js");
 
-  __webpack_require__(/*! ./it.extra.js */ "./resources/js/it.extra.js"); //require('tinymce');
-
+  __webpack_require__(/*! ./it.extra.js */ "./resources/js/it.extra.js");
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

@@ -89,3 +89,9 @@ npm install --save tinymce
 
 
 e poi il solito....
+
+
+
+# Material design icon
+
+npm install --save @mdi/font

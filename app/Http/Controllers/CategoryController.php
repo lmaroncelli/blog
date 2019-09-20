@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
+use App\Category;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class CategoryController extends Controller
 {
-
-    public function __construct()
+        public function __construct()
     {
         $this->middleware('auth');
     }
@@ -21,8 +20,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articoli = Article::orderBy('updated_at','desc')->get();
-        return view('admin.articolo.index', compact('articoli'));
+        $categorie = Category::orderBy('nome','asc')->get();
+        return view('admin.categoria.index', compact('categorie'));
     }
 
     /**
@@ -33,9 +32,9 @@ class ArticleController extends Controller
     public function create()
     {
 
-      $articolo = new Article;
+      $categoria = new Category;
 
-      return view('admin.articolo.form', compact('articolo'));
+      return view('admin.categoria.form', compact('categoria'));
 
     }
 
@@ -48,14 +47,13 @@ class ArticleController extends Controller
     public function store(Request $request)
     {   
       $request->validate([
-          'titolo' => 'required|unique:tblArticoli|max:255',
-          'corpo' => 'required',
+          'nome' => 'required|unique:tblCategorie|max:255'
       ]);
 
-      Article::create($request->all());
+      Category::create($request->all());
 
 
-      return redirect()->route('article.index')->with('status', 'Articolo creato!');
+      return redirect()->route('category.index')->with('status', 'categoria creata!');
 
 
     }
@@ -68,9 +66,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $articolo = Article::find($id);
-
-        return view('admin.articolo.view', compact('articolo'));
+        
     }
 
     /**
@@ -81,9 +77,9 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-       $articolo = Article::find($id);
+       $categoria = Category::find($id);
 
-       return view('admin.articolo.form', compact('articolo'));
+       return view('admin.categoria.form', compact('categoria'));
     }
 
     /**
@@ -96,16 +92,15 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {   
         $request->validate([
-            'titolo' => "required|unique:tblArticoli,titolo,$id |max:255",
-            'corpo' => "required",
+            'nome' => "required|unique:tblcategorie,nome,$id |max:255"
         ]);
         
-        $articolo = Article::find($id);
+        $categoria = Category::find($id);
 
-        $articolo->fill($request->all())->save();
+        $categoria->fill($request->all())->save();
         
 
-        return redirect()->route('article.index')->with('status', 'Articolo aggiornato!');
+        return redirect()->route('category.index')->with('status', 'categoria aggiornata!');
         
     }
 
@@ -117,6 +112,6 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        dd('elimina articolo '.$id);
+        dd('elimina categoria '.$id);
     }
 }

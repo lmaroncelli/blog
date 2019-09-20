@@ -16,3 +16,4 @@ mix.js('resources/js/app.js', 'public/js')
 mix.version();
 
 mix.copy('node_modules/tinymce', 'public/js/tinymce');
+mix.copy('node_modules/@mdi', 'public/js/mdi');

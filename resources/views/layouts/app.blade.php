@@ -10,16 +10,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}"></script>
     <script src="{{ asset('js/tinymce/tinymce.js') }}"></script>
-
-     
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('js/mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -97,6 +93,15 @@
           </main>
         </div>
     </div>
+    <script type="text/javascript">
+      $(".delete").click(function(e){
+        e.preventDefault();
+        var id = $(this).data("id");
+        if(window.confirm('Eliminare?')){
+          $("form#delete_article_"+id).submit();
+        }
+      })
+    </script>
     @yield('script_footer')
-</body>
+  </body>
 </html>

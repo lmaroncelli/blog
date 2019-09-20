@@ -14,7 +14,6 @@ try {
     require('parsleyjs');
     require('./it.js');
     require('./it.extra.js');
-    //require('tinymce');
     
     
 } catch (e) {}

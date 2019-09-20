@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
@@ -7,5 +7,8 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// 
+// parsley js validation
 @import "../css/parsley.css";
+
+// material design css
+@import "../css/mdi.css";
