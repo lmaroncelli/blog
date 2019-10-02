@@ -95,3 +95,63 @@ e poi il solito....
 # Material design icon
 
 npm install --save @mdi/font
+
+
+
+
+# install vue
+
+É consigliabile installare subito lo scaffolding per vue, prima di customizzare i file js e scss
+
+__php artisan ui vue__
+
+Vue scaffolding installed successfully.
+Please run "npm install && npm run dev" to compile your fresh scaffolding.
+
+questo comando genera il basci scaffolding per vue, in particolare:
+
+- in resources/js/app.js 
+
+aggiunge la chimata a vue 
+
+window.Vue = require('vue');
+
+
+crea un componente di esempio
+
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+
+e il binding con l'elemento del DOM #app (che ci deve essere)
+
+const app = new Vue({
+    el: '#app',
+});
+
+
+
+ATTENZIONE!!! I file bootstrap.js, app.scss e webpack.mix.js vengono riportati allo stato originale, quindi eventuali modifiche effettuate saranno sovrascritte (in questo caso utilizzo git per "scartare" le modifiche)
+
+
+
+resources/js/components/ExampleComponent.vue questo è un componente Vue di prova
+
+l'HTML deve essere wrappato con i tag <template></template>
+
+nella sezione <script> </script> c'è la logica delle pagina
+
+ci potrebbe essere anche una sezione <style> </style> con le regole css; se il css deve essere applicato solo al componente si utilizza <style scoped></style>
+
+
+nel file app.js 
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+quindi per usare il componente in file blade basta scrivere <example-component></example-component>
+
+**siccome voglio evitare il messaggio You are running Vue in development mode**
+
+nel file app.js dopo
+window.Vue = require('vue');
+
+includo il comando
+Vue.config.productionTip = false;

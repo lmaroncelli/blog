@@ -22,23 +22,26 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-      @include('layouts.nav')
-    </header>
-    <div class="container">
-      <div class="row">
-        <!-- Latest Posts -->
-        <main class="posts-listing col-lg-8">
-          <div class="container">
-              @yield('content')
-          </div>
-        </main>
-        <aside class="col-lg-4">
-          @include('layouts.search_widget')
-          @include('layouts.latest_posts_widget')
-          @include('layouts.category_widget')
-          @include('layouts.tag_widget')
-        </aside>
+    <div id="app">
+      <header class="header">
+        @include('layouts.nav')
+      </header>
+      <div class="container">
+        <example-component></example-component>
+        <div class="row">
+          <!-- Latest Posts -->
+          <main class="posts-listing col-lg-8">
+            <div class="container">
+                @yield('content')
+            </div>
+          </main>
+          <aside class="col-lg-4">
+            @include('layouts.search_widget')
+            {{-- @include('layouts.latest_posts_widget') --}}
+            @include('layouts.category_widget')
+            @include('layouts.tag_widget')
+          </aside>
+        </div>
       </div>
     </div>
 </body>
