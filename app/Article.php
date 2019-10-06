@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
@@ -23,6 +24,11 @@ class Article extends Model
   {
     return implode(', ',Self::categorie()->pluck('nome')->toArray());
   }
+
+  public function getExcerpt()
+    {
+      return Str::words(htmlspecialchars_decode(strip_tags($this->corpo)), 15, ' >>>');
+    }
 
 
  

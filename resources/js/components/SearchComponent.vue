@@ -1,16 +1,21 @@
 <template>
-  <ais-index
-    app-id="latency"
-    api-key="3d9875e51fbd20c7754e65422f7ce5e1"
-    index-name="bestbuy"
-  >
-    <ais-search-box></ais-search-box>
-    <ais-results>
-      <template slot-scope="{ result }">
-        <h2>
-          <ais-highlight :result="result" attribute-name="name"></ais-highlight>
-        </h2>
-      </template>
-    </ais-results>
-  </ais-index>
+  <div class="widget search">
+  <header>
+    <h3 class="h6">Search the blog</h3>
+  </header>
+  <form action="#" class="search-form">
+    <div class="form-group">
+      <input type="search" placeholder="What are you looking for?">
+      <button type="submit" class="submit"><i class="icon-search"></i></button>
+    </div>
+  </form>
+</div>
 </template>
+
+<script>
+    export default {
+        mounted() {
+            console.log('SearchComponent mounted.')
+        }
+    }
+</script>

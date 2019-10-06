@@ -27,7 +27,7 @@
         @include('layouts.nav')
       </header>
       <div class="container">
-        <example-component></example-component>
+        {{-- <example-component></example-component> --}}
         <div class="row">
           <!-- Latest Posts -->
           <main class="posts-listing col-lg-8">

@@ -186,4 +186,11 @@ creo un componente SearchComponent.vue come quello di esempio in cui copio il te
 
 npm run dev per compilare
 
+###############################################################################################################
 
+
+
+installo dal debug bar 
+> composer require barryvdh/laravel-debugbar --dev
+
+https://pineco.de/instant-ajax-search-laravel-vue/
