@@ -190,6 +190,16 @@ npm run dev per compilare
 
 
 
+vagrant plugin install vagrant-vbguest
+
+E certifique-se de atualizar o plugin quando você atualizar o Virtualbox e o pacote de extensão:
+
+vagrant plugin update vagrant-vbguest
+
+
+
+
+
 installo dal debug bar 
 > composer require barryvdh/laravel-debugbar --dev
 

@@ -36,7 +36,6 @@
             </div>
           </main>
           <aside class="col-lg-4">
-            @include('layouts.search_widget')
             {{-- @include('layouts.latest_posts_widget') --}}
             @include('layouts.category_widget')
             @include('layouts.tag_widget')

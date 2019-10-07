@@ -3,9 +3,8 @@
 @section('content')
 <div class="row">
   <div class="post col-xl-8">
-    @foreach ($articoli as $articolo)
-        @include('show_articolo')
-    @endforeach
+    {{-- <search-component></search-component> --}}
+    <articles></articles>
   </div>
 </div>
  <!-- Pagination -->

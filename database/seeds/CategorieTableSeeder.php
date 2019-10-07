@@ -12,7 +12,9 @@ class CategorieTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (['MySQL', 'PHP', 'Linux', 'Laravel'] as $value) 
+        DB::table('tblCategorie')->truncate();
+
+        foreach (['MySQL', 'PHP', 'Linux', 'Laravel', 'LAN'] as $value) 
           {
 
             DB::table('tblCategorie')->insert([
