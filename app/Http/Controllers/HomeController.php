@@ -27,4 +27,15 @@ class HomeController extends Controller
         $articoli = Article::orderBy('updated_at', 'desc')->get();
         return view('home', compact('articoli'));
     }
+
+
+
+    public function search(Request $request)
+      {
+				$articoli = Article::where('titolo','like','%'.$request->get('q').'%')->orWhere('corpo','like','%'.$request->get('q').'%')->get();
+				return view('home', compact('articoli'));
+				return $articoli;
+			}
+
+
 }

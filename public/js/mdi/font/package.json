@@ -1,10 +1,4 @@
 {
-  "_args": [
-    [
-      "@mdi/font@4.4.95",
-      "/home/vagrant/VirtualProjects/blog"
-    ]
-  ],
   "_from": "@mdi/font@4.4.95",
   "_id": "@mdi/font@4.4.95",
   "_inBundle": false,
@@ -23,10 +17,12 @@
     "fetchSpec": "4.4.95"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@mdi/font/-/font-4.4.95.tgz",
-  "_spec": "4.4.95",
+  "_shasum": "4a00f46a500120714ded1524f376f7882346d3fd",
+  "_spec": "@mdi/font@4.4.95",
   "_where": "/home/vagrant/VirtualProjects/blog",
   "author": {
     "name": "Austin Andrews",
@@ -35,6 +31,8 @@
   "bugs": {
     "url": "https://github.com/Templarian/MaterialDesign/issues"
   },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "Dist for Material Design Webfont. This includes the Stock and Community icons in a single webfont collection.",
   "homepage": "https://materialdesignicons.com",
   "keywords": [

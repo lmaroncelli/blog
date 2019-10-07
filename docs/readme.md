@@ -155,3 +155,42 @@ window.Vue = require('vue');
 
 includo il comando
 Vue.config.productionTip = false;
+
+
+
+# vue install search
+
+> https://www.algolia.com/doc/guides/building-search-ui/what-is-instantsearch/vue/
+> https://community.algolia.com/vue-instantsearch/getting-started/getting-started.html
+
+
+
+npm install --save vue-instantsearch
+
+nel package.json ha aggiunto il pacchetto
+
+"vue-instantsearch": "^2.5.0"
+
+
+in app.js aggiungo: (https://community.algolia.com/vue-instantsearch/getting-started/getting-started.html)
+
+
+import InstantSearch from 'vue-instantsearch';
+
+Vue.use(InstantSearch);
+
+
+creo un componente SearchComponent.vue come quello di esempio in cui copio il template della documentazione e lo metto nel widget search
+
+
+
+npm run dev per compilare
+
+###############################################################################################################
+
+
+
+installo dal debug bar 
+> composer require barryvdh/laravel-debugbar --dev
+
+https://pineco.de/instant-ajax-search-laravel-vue/
