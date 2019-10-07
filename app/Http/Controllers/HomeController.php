@@ -24,8 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //$articoli = Article::orderBy('updated_at', 'desc')->get();
+        $articoli = Article::orderBy('updated_at', 'desc')->get();
         
+        dd($articoli);
+
         return view('home');
     }
 
