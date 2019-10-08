@@ -33,6 +33,11 @@ class Article extends Model
       return $this->belongsToMany('App\Category', 'tblArticoliCategorie', 'articolo_id', 'categoria_id');
   }
 
+  public function tags()
+  {
+      return $this->belongsToMany('App\Tag', 'tblArticoliTags', 'articolo_id', 'tag_id');
+  }
+
   public function toSearchableArray()
   {
 
@@ -48,6 +53,11 @@ class Article extends Model
   public function getCategorie()
   {
     return implode(', ',Self::categorie()->pluck('nome')->toArray());
+  }
+
+  public function getTags()
+  {
+    return implode(', ',Self::tags()->pluck('nome')->toArray());
   }
 
   public function getExcerpt()
