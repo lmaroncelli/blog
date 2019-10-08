@@ -24,7 +24,8 @@ class ArticleResource extends JsonResource
             'anno' => $this->created_at->format('Y'),
             'categorie' => $this->getCategorie(),
             'excerpt' => $this->getExcerpt(),
-            'modifica' => $this->updated_at->locale('it_IT')->diffForHumans()
+            'modifica' => $this->updated_at->locale('it_IT')->diffForHumans(),
+            'url' => route('article.show', $this->id)
         ];
     }
 }

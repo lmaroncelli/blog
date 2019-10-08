@@ -1893,41 +1893,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   //a runtime i paramentri presenti nell’opzione data vengono elevati a proprietà dell’oggetto principale e per accedervi non è necessario fare riferimento all’oggetto data. 
   data: function data() {
     return {
-      show: false,
+      title: 'Search the blog',
       articles: [],
       keywords: ''
     };
   },
   // While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That’s why Vue provides a more generic way to react to data changes through the watch option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+  // whenever keywords changes, this function will run
+  watch: {
+    keywords: function keywords(after, before) {
+      if (after == '') {
+        this.articles = [];
+      } else {
+        this.search();
+      }
+    }
+  },
   // Oltre al modello dati, è possibile associare all’instanza Vue anche delle funzioni che descrivono il comportamento della nostra applicazione. La definizione di queste funzioni avviene all’interno della proprietà methods passata al costruttore Vue.
   // Queste funzioni hanno una duplice utilità, possono essere registrate come callback di eventi DOM (click, keyup, mouseover…) oppure possono essere invocate manualmente all’interno della nostra istanza Vue.
-  methods: {},
+  methods: {
+    search: function search() {
+      var _this = this;
+
+      axios.get('/api/search', {
+        params: {
+          keywords: this.keywords
+        }
+      }).then(function (response) {
+        console.log('response.data =' + response.data.data);
+        console.log('response.status =' + response.status);
+        console.log('response.statusText =' + response.statusText);
+        console.log('response.headers =' + response.headers);
+        console.log('response.config =' + response.config);
+        _this.articles = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+        alert("Could not load companies");
+      });
+    } // end search
+
+  },
+  // end methods
   // questo è un hook
   // viene invocato subito dopo che l’istanza viene renderizzata e il frammento DOM originale viene sostituito con quello gestito da Vue
   // The data given by the Api endpoint are wrapped into a data object and the response given by the Axios request is also wrapped into a data object. Consequently, the response of the Axios request is double wrapped into nested data object (response.data.data).
   // https://github.com/laravel/framework/issues/22059
   mounted: function mounted() {
-    var _this = this;
-
-    axios.get('/api/search', {
-      params: {
-        keywords: this.keywords
-      }
-    }).then(function (response) {
-      console.log('response.data =' + response.data.data);
-      console.log('response.status =' + response.status);
-      console.log('response.statusText =' + response.statusText);
-      console.log('response.headers =' + response.headers);
-      console.log('response.config =' + response.config);
-      _this.articles = response.data.data;
-    })["catch"](function (error) {
-      console.log(error);
-      alert("Could not load companies");
-    });
     console.log('ListArticlesComponent mounted.');
   }
 });
@@ -45852,42 +45880,91 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.articles, function(article, index) {
-      return _c("div", { key: index, staticClass: "post-details" }, [
-        _c("div", { staticClass: "post-meta d-flex justify-content-between" }, [
-          _c("div", { staticClass: "date meta-last" }, [
-            _vm._v(_vm._s(article.giorno_mese) + " | " + _vm._s(article.anno))
-          ]),
+    [
+      _c(
+        "div",
+        { staticClass: "widget search", staticStyle: { "padding-left": "0" } },
+        [
+          _c("h3", {
+            staticClass: "h6",
+            domProps: { textContent: _vm._s(_vm.title) }
+          }),
           _vm._v(" "),
-          _c("div", { staticClass: "category" }, [
-            _c("a", { attrs: { href: "#" } }, [
-              _vm._v(_vm._s(article.categorie))
+          _c("form", { staticClass: "search-form", attrs: { action: "#" } }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.keywords,
+                    expression: "keywords"
+                  }
+                ],
+                attrs: {
+                  type: "search",
+                  placeholder: "What are you looking for?"
+                },
+                domProps: { value: _vm.keywords },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.keywords = $event.target.value
+                  }
+                }
+              })
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("a", { attrs: { href: "post.html" } }, [
-          _c("h3", { staticClass: "h4" }, [_vm._v(_vm._s(article.titolo))])
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-muted" }, [
-          _vm._v(_vm._s(article.excerpt))
-        ]),
-        _vm._v(" "),
-        _c("footer", { staticClass: "post-footer d-flex align-items-center" }, [
-          _c("div", { staticClass: "date" }, [
-            _c("i", { staticClass: "icon-clock" }, [
-              _vm._v(_vm._s(article.modifica))
-            ])
+        ]
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.articles, function(article, index) {
+        return _c("div", { key: index, staticClass: "post-details" }, [
+          _c(
+            "div",
+            { staticClass: "post-meta d-flex justify-content-between" },
+            [
+              _c("div", { staticClass: "date meta-last" }, [
+                _vm._v(
+                  _vm._s(article.giorno_mese) + " | " + _vm._s(article.anno)
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "category" }, [
+                _c("a", { attrs: { href: "#" } }, [
+                  _vm._v(_vm._s(article.categorie))
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("a", { attrs: { href: article.url, target: "_blank" } }, [
+            _c("h3", { staticClass: "h4" }, [_vm._v(_vm._s(article.titolo))])
           ]),
           _vm._v(" "),
-          _c("span", { staticClass: "comments" }, [
-            _vm._v("ultimo aggiornamento")
-          ])
+          _c("p", { staticClass: "text-muted" }, [
+            _vm._v(_vm._s(article.excerpt))
+          ]),
+          _vm._v(" "),
+          _c(
+            "footer",
+            { staticClass: "post-footer d-flex align-items-center" },
+            [
+              _c("span", { staticClass: "comments" }, [
+                _vm._v("ultimo aggiornamento")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "date" }, [
+                _vm._v("\n          " + _vm._s(article.modifica) + "\n        ")
+              ])
+            ]
+          )
         ])
-      ])
-    }),
-    0
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
