@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Http\Resources\ArticleResource;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,9 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $articoli = Article::orderBy('updated_at', 'desc')->get();
-        
-        dd($articoli);
+        //$articoli = Article::orderBy('updated_at', 'desc')->get();
 
         return view('home');
     }
@@ -39,7 +38,8 @@ class HomeController extends Controller
         
         $articoli = Article::where('titolo','like','%'.$request->get('keywords').'%')->orWhere('corpo','like','%'.$request->get('keywords').'%')->get();
         
-        return $articoli;
+        return ArticleResource::collection($articoli);
+        
 			}
 
 

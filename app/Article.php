@@ -8,14 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-  protected $excerpt = null;
-  public function __construct(array $attributes = array())
-    {
-      $this->excerpt = Str::words(htmlspecialchars_decode(strip_tags($this->corpo)), 15, ' >>>'); 
-      parent::__construct($attributes);
-
-    }
-
   protected $table = 'tblArticoli';
 
 	protected $guarded = ['id'];

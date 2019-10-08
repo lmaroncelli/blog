@@ -1899,7 +1899,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       show: false,
       articles: [],
-      keywords: 'sql'
+      keywords: ''
     };
   },
   // While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That’s why Vue provides a more generic way to react to data changes through the watch option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
@@ -1908,15 +1908,22 @@ __webpack_require__.r(__webpack_exports__);
   methods: {},
   // questo è un hook
   // viene invocato subito dopo che l’istanza viene renderizzata e il frammento DOM originale viene sostituito con quello gestito da Vue
+  // The data given by the Api endpoint are wrapped into a data object and the response given by the Axios request is also wrapped into a data object. Consequently, the response of the Axios request is double wrapped into nested data object (response.data.data).
+  // https://github.com/laravel/framework/issues/22059
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/search', {
+    axios.get('/api/search', {
       params: {
         keywords: this.keywords
       }
     }).then(function (response) {
-      return _this.articles = response.data;
+      console.log('response.data =' + response.data.data);
+      console.log('response.status =' + response.status);
+      console.log('response.statusText =' + response.statusText);
+      console.log('response.headers =' + response.headers);
+      console.log('response.config =' + response.config);
+      _this.articles = response.data.data;
     })["catch"](function (error) {
       console.log(error);
       alert("Could not load companies");
@@ -45849,13 +45856,7 @@ var render = function() {
       return _c("div", { key: index, staticClass: "post-details" }, [
         _c("div", { staticClass: "post-meta d-flex justify-content-between" }, [
           _c("div", { staticClass: "date meta-last" }, [
-            _vm._v(
-              _vm._s(article.giorno) +
-                " " +
-                _vm._s(article.mese) +
-                " | " +
-                _vm._s(article.anno)
-            )
+            _vm._v(_vm._s(article.giorno_mese) + " | " + _vm._s(article.anno))
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "category" }, [
