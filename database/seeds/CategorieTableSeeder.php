@@ -14,7 +14,7 @@ class CategorieTableSeeder extends Seeder
     {
         DB::table('tblCategorie')->truncate();
 
-        foreach (['MySQL', 'PHP', 'Linux', 'Laravel', 'LAN'] as $value) 
+        foreach (['MySQL', 'PHP', 'Linux', 'Laravel'] as $value) 
           {
 
             DB::table('tblCategorie')->insert([

@@ -22,16 +22,27 @@
       </div>
       <div class="form-group">
         <label for="corpo">Contenuto</label>
-        <textarea class="form-control" id="corpo" name="corpo" rows="3" data-parsley-required>{{ old('corpo', $articolo->corpo) }}</textarea>        
+        <textarea class="form-control" id="corpo" name="corpo" rows="3" data-parsley-required>{{ old('corpo', $articolo->corpo) }}</textarea>
       </div>
+      
       <div class="form-group">
         <label for="categorie">Categorie</label>      
-        <select id="categorie" class="form-control select2" name="categorie[]" multiple>
+        <select id="categorie" class="form-control select2" name="categorie[]" multiple="multiple">
           @foreach ($categorie as $cat)
             <option value="{{$cat->id}}" @if (in_array($cat->id,$categorie_assegnate_ids)) selected @endif>{{$cat->nome}}</option>  
           @endforeach
         </select>
-      </div>  
+      </div>
+
+      <div class="form-group">
+        <label for="tags">Tags</label>      
+        <select id="tags" class="form-control select2" name="tags[]" multiple="multiple">
+          @foreach ($tags as $tag)
+            <option value="{{$tag->id}}" @if (in_array($tag->id,$tags_assegnati_ids)) selected @endif>{{$tag->nome}}</option>  
+          @endforeach
+        </select>
+      </div>
+
       <button type="submit" class="btn btn-primary">{{ !$articolo->exists ? 'Salva' : ' Aggiorna'}}</button>
       <a href="{{ route('article.index') }}" class="btn btn-secondary">Annulla</a>
     </form>
