@@ -12,7 +12,9 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/search', 'HomeController@search')->name('search');
+Route::get('/show_articolo/{id}', 'HomeController@showArticolo')->name('show_articolo');
 
 
 Auth::routes();
@@ -23,6 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('article', 'ArticleController');
     Route::resource('category', 'CategoryController');
+    Route::resource('tag', 'TagController');
     
 });
 

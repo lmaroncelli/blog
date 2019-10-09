@@ -1,15 +1,32 @@
-<div class="post-details">
-  <div class="post-meta d-flex justify-content-between">
-    <div class="date meta-last">{{$articolo->created_at->locale('it_IT')->format('d F')}} | {{$articolo->created_at->format('Y')}}</div>
-    <div class="category"><a href="#">{{$articolo->getCategorie()}}</a></div>
-  </div>
-  <a href="post.html">
-    <h3 class="h4">{{$articolo->titolo}}</h3></a>
-  <p class="text-muted">{{$articolo->getExcerpt()}}</p>
-  <footer class="post-footer d-flex align-items-center">
-    <div class="date">
-      <i class="icon-clock"></i> {{$articolo->updated_at->locale('it_IT')->diffForHumans()}}
+@extends('layouts.site')
+
+@section('content')
+<main class="post blog-post col-lg-8"> 
+  <div class="container">
+    <div class="post-single">
+        
+      <div class="post-meta d-flex justify-content-between">
+        <div class="category">{{$articolo->getCategorie()}}</div>
+      </div>
+      
+      <h1>{{$articolo->titolo}}</h1>
+      
+      <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
+        <div class="d-flex align-items-center flex-wrap">       
+          <div class="date"><i class="icon-clock"></i> {{$articolo->updated_at->locale('it_IT')->diffForHumans()}}</div>
+        </div>
+      </div>
+      
+      <div class="post-body">
+        {!!$articolo->corpo!!}
+      </div>
+
+      <div class="post-tags">
+        {{$articolo->getTags()}}
+      </div>
+
     </div>
-    <span class="comments">ultimo aggiornamento</span>
-  </footer>
-</div>
+  </div>
+</main>
+ 
+@endsection

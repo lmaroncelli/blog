@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use App\Article;
 use App\Category;
 use Illuminate\Http\Request;
@@ -56,8 +57,9 @@ class ArticleController extends Controller
           'corpo' => 'required',
       ]);
 
-      Article::create($request->all());
+      $articolo = Article::create($request->except('categorie'));
 
+      $articolo->categorie()->sync($request->categorie);  
 
       return redirect()->route('article.index')->with('status', 'Articolo creato!');
 
@@ -88,9 +90,12 @@ class ArticleController extends Controller
        $articolo = Article::find($id);
 
        $categorie = Category::orderBy('nome')->get();
-       $categorie_assegnate_ids = $articolo->categorie()->pluck('tblCategorie.id')->toArray(); 
+       $tags = Tag::orderBy('nome')->get();
 
-       return view('admin.articolo.form', compact('articolo','categorie','categorie_assegnate_ids'));
+       $categorie_assegnate_ids = $articolo->categorie()->pluck('tblCategorie.id')->toArray(); 
+       $tags_assegnati_ids = $articolo->tags()->pluck('tblTags.id')->toArray(); 
+
+       return view('admin.articolo.form', compact('articolo','categorie','categorie_assegnate_ids','tags','tags_assegnati_ids'));
     }
 
     /**

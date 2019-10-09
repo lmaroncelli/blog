@@ -12,10 +12,6 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <link rel="stylesheet" href="{{ asset('css/style.default.css') }}">
 
     <!-- Styles -->
@@ -27,21 +23,15 @@
         @include('layouts.nav')
       </header>
       <div class="container">
-        {{-- <example-component></example-component> --}}
         <div class="row">
-          <!-- Latest Posts -->
-          <main class="posts-listing col-lg-8">
-            <div class="container">
-                @yield('content')
-            </div>
-          </main>
-          <aside class="col-lg-4">
-            {{-- @include('layouts.latest_posts_widget') --}}
-            @include('layouts.category_widget')
-            @include('layouts.tag_widget')
-          </aside>
-        </div>
+            @yield('content')
+            <aside class="col-lg-4">
+              {{-- @include('layouts.latest_posts_widget') --}}
+              @include('layouts.category_widget')
+              @include('layouts.tag_widget')
+            </aside>
+        </div>  
       </div>
-    </div>
+      </div>
 </body>
 </html>

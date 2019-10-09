@@ -45952,12 +45952,11 @@ var render = function() {
             "footer",
             { staticClass: "post-footer d-flex align-items-center" },
             [
-              _c("span", { staticClass: "comments" }, [
-                _vm._v("ultimo aggiornamento")
-              ]),
-              _vm._v(" "),
               _c("div", { staticClass: "date" }, [
-                _vm._v("\n          " + _vm._s(article.modifica) + "\n        ")
+                _c("i", { staticClass: "icon-clock" }),
+                _vm._v(
+                  " \n          " + _vm._s(article.modifica) + "\n        "
+                )
               ])
             ]
           )

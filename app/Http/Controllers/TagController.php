@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -20,8 +21,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categorie = Category::orderBy('nome','asc')->get();
-        return view('admin.categoria.index', compact('categorie'));
+      $tags = Tag::orderBy('nome','asc')->get();
+      return view('admin.tag.index', compact('tags'));
     }
 
     /**
@@ -31,11 +32,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
+      $tag = new Tag;
 
-      $categoria = new Category;
-
-      return view('admin.categoria.form', compact('categoria'));
-
+      return view('admin.tag.form', compact('tag'));
     }
 
     /**
@@ -45,17 +44,15 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-      $request->validate([
-          'nome' => 'required|unique:tblCategorie|max:255'
+    {
+       $request->validate([
+          'nome' => 'required|unique:tblTags|max:255'
       ]);
 
-      Category::create($request->all());
+      Tag::create($request->all());
 
 
-      return redirect()->route('category.index')->with('status', 'categoria creata!');
-
-
+      return redirect()->route('tag.index')->with('status', 'tag creato!');
     }
 
     /**
@@ -66,7 +63,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -77,9 +74,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-       $categoria = Category::find($id);
+      $tag = Tag::find($id);
 
-       return view('admin.categoria.form', compact('categoria'));
+      return view('admin.tag.form', compact('tag'));
     }
 
     /**
@@ -90,18 +87,17 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
-        $request->validate([
-            'nome' => "required|unique:tblcategorie,nome,$id |max:255"
+    {
+       $request->validate([
+            'nome' => "required|unique:tblTags,nome,$id |max:255"
         ]);
         
-        $categoria = Category::find($id);
+        $tag = Tag::find($id);
 
-        $categoria->fill($request->all())->save();
+        $tag->fill($request->all())->save();
         
 
-        return redirect()->route('category.index')->with('status', 'categoria aggiornata!');
-        
+        return redirect()->route('tag.index')->with('status', 'tag aggiornata!');
     }
 
     /**
@@ -112,6 +108,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        dd('elimina categoria '.$id);
+         dd('elimina tag '.$id);
     }
 }

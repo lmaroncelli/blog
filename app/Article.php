@@ -16,7 +16,7 @@ class Article extends Model
   //protected $dates = ['dalle','alle'];
 
 
-  use Searchable;
+  //use Searchable;
 
   /**
    * Get the index name for the model.
@@ -52,12 +52,12 @@ class Article extends Model
 
   public function getCategorie()
   {
-    return implode(', ',Self::categorie()->pluck('nome')->toArray());
+    return implode(', ',Self::categorie()->pluck('tblCategorie.nome')->toArray());
   }
 
   public function getTags()
   {
-    return implode(', ',Self::tags()->pluck('nome')->toArray());
+    return implode(', ',Self::tags()->pluck('tblTags.nome')->toArray());
   }
 
   public function getExcerpt()

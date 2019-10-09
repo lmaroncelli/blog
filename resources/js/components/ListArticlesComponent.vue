@@ -23,8 +23,8 @@
         </a>
       <p class="text-muted">{{article.excerpt}}</p>
       <footer class="post-footer d-flex align-items-center">
-        <span class="comments">ultimo aggiornamento</span>
         <div class="date">
+          <i class="icon-clock"></i> 
           {{article.modifica}}
         </div>
       </footer>

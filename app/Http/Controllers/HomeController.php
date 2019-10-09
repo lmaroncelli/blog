@@ -40,7 +40,15 @@ class HomeController extends Controller
         
         return ArticleResource::collection($articoli);
         
-			}
+      }
+      
+    
+
+      public function showArticolo(Request $request, $id)
+        {
+          $articolo = Article::find($id);
+          return view('show_articolo', compact('articolo'));
+        }
 
 
 }
