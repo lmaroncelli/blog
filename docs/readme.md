@@ -204,3 +204,9 @@ installo dal debug bar
 > composer require barryvdh/laravel-debugbar --dev
 
 https://pineco.de/instant-ajax-search-laravel-vue/
+
+
+
+
+installo Laravel File Manager (https://unisharp.github.io/laravel-filemanager/installation) per gestire upload dei file con TINYMCE
+

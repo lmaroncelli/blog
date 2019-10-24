@@ -30,7 +30,7 @@ class ArticleController extends Controller
      */
     private function _manage_categorie(&$request)
       {
-      if (count($request->categorie)) 
+      if ($request->has('categorie') && count($request->categorie)) 
         {
         $request_categorie = $request->categorie;
 
@@ -57,7 +57,7 @@ class ArticleController extends Controller
        */
     private function _manage_tags(&$request)
       {
-      if (count($request->tags)) 
+      if ($request->has('tags') && count($request->tags)) 
         {
         $request_tags = $request->tags;
 
@@ -99,8 +99,10 @@ class ArticleController extends Controller
 
       $categorie = Category::orderBy('nome')->get();
       $categorie_assegnate_ids = []; 
+      $tags = Tag::orderBy('nome')->get();
+      $tags_assegnati_ids = []; 
 
-      return view('admin.articolo.form', compact('articolo','categorie','categorie_assegnate_ids'));
+      return view('admin.articolo.form', compact('articolo','categorie','categorie_assegnate_ids','tags','tags_assegnati_ids'));
 
     }
 
@@ -117,9 +119,13 @@ class ArticleController extends Controller
           'corpo' => 'required',
       ]);
 
-      $articolo = Article::create($request->except('categorie'));
+      $articolo = Article::create($request->except(['categorie','tags']));
 
-      $articolo->categorie()->sync($request->categorie);  
+      $this->_manage_categorie($request);
+      $articolo->categorie()->sync($request->categorie);
+
+      $this->_manage_tags($request);
+      $articolo->tags()->sync($request->tags);
 
       return redirect()->route('article.index')->with('status', 'Articolo creato!');
 
@@ -177,11 +183,9 @@ class ArticleController extends Controller
         $articolo->fill($request->except(['categorie','tags']))->save();
         
         $this->_manage_categorie($request);
-
         $articolo->categorie()->sync($request->categorie);
 
         $this->_manage_tags($request);
-
         $articolo->tags()->sync($request->tags);
         
         return redirect()->route('article.index')->with('status', 'Articolo aggiornato!');

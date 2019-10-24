@@ -3,12 +3,28 @@ TinyMCE - JavaScript Library for Rich Text Editing
 
 Building TinyMCE
 -----------------
-See the monorepo root readme file for installation instructions.
+Install [Node.js](https://nodejs.org/en/) on your system.
+Clone this repository on your system
+```
+$ git clone https://github.com/tinymce/tinymce.git
+```
+Open a console and go to the project directory.
+```
+$ cd tinymce/
+```
+Install `grunt` command line tool globally.
+```
+$ npm i -g grunt-cli
+```
+Install all package dependencies.
+```
+$ npm install
+```
+Now, build TinyMCE by using `grunt`.
+```
+$ grunt
+```
 
-Now, build TinyMCE by using `grunt`. If you don't have `grunt-cli` installed globally, prefix with `yarn` to execute the local grunt.
-```
-$ yarn grunt
-```
 
 Build tasks
 ------------
@@ -50,9 +66,9 @@ Displays the various build tasks.
 
 Bundle themes and plugins into a single file
 ---------------------------------------------
-`grunt bundle --themes=silver --plugins=table,paste`
+`grunt bundle --themes=modern --plugins=table,paste`
 
-Minifies the core, adds the silver theme and adds the table and paste plugin into tinymce.min.js.
+Minifies the core, adds the modern theme and adds the table and paste plugin into tinymce.min.js.
 
 Contributing to the TinyMCE project
 ------------------------------------
@@ -80,8 +96,4 @@ __How to Contribute to the Docs__
 
 Docs are hosted on Github in the [tinymce-docs](https://github.com/tinymce/tinymce-docs) repo.
 
-[How to contribute](https://www.tiny.cloud/docs/advanced/contributing-docs/) to the docs, including a style guide, can be found on the TinyMCE website.
-
-[Documentation](https://www.tiny.cloud/docs/)
-
-[Log feedback](https://github.com/tinymce/tinymce/labels/5.x)
+[How to contribute](https://www.tinymce.com/docs/advanced/contributing-docs/) to the docs, including a style guide, can be found on the TinyMCE website.

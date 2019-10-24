@@ -4,9 +4,13 @@
 
 <div class="row">
   <div class="col-md-10 offset-md-1">
-    <h1>Elenco articoli</h1>
-    <a class="btn btn-primary m-2" href="{{ route('article.create') }}">Nuovo articolo</a>
-    <hr>
+    <div class="d-flex">
+      <h1 class="mt-2">Elenco articoli</h1>
+      <div class="ml-auto p-2">
+        <a class="btn btn-primary m-2" href="{{ route('article.create') }}">Nuovo articolo</a>
+      </div>
+    </div>
+    {{-- <hr> --}}
     @if ($articoli->count())
     <table class="table table-hover">
       <thead>
