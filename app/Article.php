@@ -28,6 +28,12 @@ class Article extends Model
       return 'articoli_index';
   }
 
+  public function setTitoloAttribute($value)
+    {
+        $this->attributes['titolo'] = $value;
+        $this->attributes['slug'] = str_slug($value);
+    }
+
   public function categorie()
   {
       return $this->belongsToMany('App\Category', 'tblArticoliCategorie', 'articolo_id', 'categoria_id');
