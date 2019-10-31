@@ -16,7 +16,8 @@
       @method('PUT')        
     @endif
       @csrf
-      
+
+      @if (!$articolo->exists)
       <div class="form-group">
         <label for="titolo">Titolo</label>
         <input type="text" class="form-control" id="titolo" name="titolo" placeholder="Titolo articolo" value="{{ old('titolo', $articolo->titolo) }}" data-parsley-required data-parsley-maxlength="150">
@@ -25,7 +26,10 @@
         <label for="slug">Slug</label>
         <input id="slug" class="form-control" type="text" name="slug" value="{{ old('slug', $articolo->slug) }}">
       </div>
-
+      @else
+        <title-slug :articolo="{{ $articolo->toJson() }}"></title-slug>
+      @endif
+      
       <div class="form-group">
         <label for="corpo">Contenuto</label>
         <textarea class="form-control" id="corpo" name="corpo" rows="3" data-parsley-required>{{ old('corpo', $articolo->corpo) }}</textarea>

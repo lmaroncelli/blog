@@ -10,7 +10,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
     <script src="{{ asset('js/tinymce/tinymce.js') }}"></script>
     
     <!-- Styles -->
@@ -97,21 +96,8 @@
           </main>
         </div>
     </div>
-    <script type="text/javascript">
-
-      $(".delete").click(function(e){
-        e.preventDefault();
-        var id = $(this).data("id");
-        if(window.confirm('Eliminare?')){
-          $("form#delete_article_"+id).submit();
-        }
-      })
-
-      $(document).ready(function() {
-          $('.select2').select2({tags: true});
-      });
-    
-    </script>
+    <script src="{{ mix('js/app.js') }}"></script>    
+    @include('layouts.common_scripts')
     @yield('script_footer')
   </body>
 </html>
