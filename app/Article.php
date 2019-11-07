@@ -68,7 +68,7 @@ class Article extends Model
 
   public function getExcerpt()
     {
-      return Str::words(htmlspecialchars_decode(strip_tags($this->corpo)), 15, ' >>>');
+      return Str::words(html_entity_decode(htmlspecialchars_decode(strip_tags($this->corpo))), 15, ' >>>');
     }
 
 
