@@ -72,6 +72,12 @@ class Article extends Model
     }
 
 
+  public function getCorpoAttribute($value)
+    {
+        return str_replace(['{','}','{{','}}'],'',$value);
+    }
+
+
  
   
 

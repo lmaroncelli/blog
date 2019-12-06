@@ -17,7 +17,7 @@
     @endif
       @csrf
 
-      @if (!$articolo->exists)
+      {{-- @if (!$articolo->exists)
       <div class="form-group">
         <label for="titolo">Titolo</label>
         <input type="text" class="form-control" id="titolo" name="titolo" placeholder="Titolo articolo" value="{{ old('titolo', $articolo->titolo) }}" data-parsley-required data-parsley-maxlength="150">
@@ -28,7 +28,9 @@
       </div>
       @else
         <title-slug :articolo="{{ $articolo->toJson() }}"></title-slug>
-      @endif
+      @endif --}}
+      
+      <title-slug :articolo="{{ $articolo->toJson() }}"></title-slug>
       
       <div class="form-group">
         <label for="corpo">Contenuto</label>

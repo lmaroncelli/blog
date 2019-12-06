@@ -2058,15 +2058,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['articolo'],
   data: function data() {
-    return {
-      titolo: this.articolo.titolo
-    };
+    if (typeof this.articolo.titolo !== 'undefined') {
+      return {
+        titolo: this.articolo.titolo
+      };
+    } else {
+      return {
+        titolo: ''
+      };
+    }
   },
   computed: {
     // a computed getter
     slug: function slug() {
       // `this` points to the vm instance
-      return this.titolo.split('').reverse().join('');
+      return this.createSlug(this.titolo);
+    }
+  },
+  methods: {
+    createSlug: function createSlug(title) {
+      var slug = ""; // Change to lower case
+
+      var titleLower = title.toLowerCase(); // Letter "e"
+
+      slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, 'e'); // Letter "a"
+
+      slug = slug.replace(/a|á|à|ã|ả|ạ|ă|ắ|ằ|ẵ|ẳ|ặ|â|ấ|ầ|ẫ|ẩ|ậ/gi, 'a'); // Letter "o"
+
+      slug = slug.replace(/o|ó|ò|õ|ỏ|ọ|ô|ố|ồ|ỗ|ổ|ộ|ơ|ớ|ờ|ỡ|ở|ợ/gi, 'o'); // Letter "u"
+
+      slug = slug.replace(/u|ú|ù|ũ|ủ|ụ|ư|ứ|ừ|ữ|ử|ự/gi, 'u'); // Letter "d"
+
+      slug = slug.replace(/đ/gi, 'd'); // Trim the last whitespace
+
+      slug = slug.replace(/\s*$/g, ''); // Change whitespace to "-"
+
+      slug = slug.replace(/\s+/g, '-');
+      return slug;
     }
   },
   mounted: function mounted() {
@@ -58769,8 +58797,8 @@ Parsley.setLocale('it');
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/VirtualProjects/blog/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/VirtualProjects/blog/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/luigi/VirtualProjects/blog/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/luigi/VirtualProjects/blog/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
